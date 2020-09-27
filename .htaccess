@@ -1,0 +1,13 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ /bordados/index.php/$1 [L]
+</IfModule>
+<IfModule !mod_rewrite.c>
+    ErrorDocument 404 /bordados/index.php
+</IfModule>
+<FilesMatch ".(otf|ttf|eot|woff|woff2)$">
+SetEnvIf Origin "^http(s)?://(.+.)?(localhost|yourdomain.com)$" origin_is=$0
+Header set Access-Control-Allow-Origin %{origin_is}e env=origin_is
+</FilesMatch>
